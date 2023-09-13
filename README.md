@@ -6,21 +6,40 @@ The Techno Trojan Training series provides a series of program repositories that
 working examples for training new developers. These public modules will be updated and maintained
 as the FIRST FTC framework is updated.
 
-## Installing
+## Downloading the Project
+
+### TechnoTrojanTraining (TTT) - Training Series Repository
+
+This repository is intended to be used as a training guide to help when building out your own competition
+program. This repository is not intended to be used 'as-is' for any competition robot codebase. However, the
+team code within this repository can be used to bring into your own project and adapted to your own robot configuration.
 
 The base project is from the FtcRobotController project/repository in the FIRST-Tech-Challenge Github organization.
-The modules that have been added as part of this training project are detailed below. You can either download the entire project
+The modules that have been added (TeamCode) as part of this training project are detailed individually below. You can either download the entire (TechnoTrojanTraining) project
 or simply grab the specific java program modules you are interested in.
 
-If you are familiar with GitHub you can clone this repository locally. Since this project is derived from the
+### FtcRobotController Framework
+
+> Reference: [FtcRobotController GitHub Repository](https://github.com/FIRST-Tech-Challenge/FtcRobotController)
+> Release Version: 9.0
+> Season: 2023/2024 (competition season)
+> Game: Centerstage
+
+### Obtaining This Repository (TechnoTrojanTraining) Code
+
+If you are familiar with GitHub (and have an account) you can clone this repository locally. Since this project is derived from the
 FIRST FtcRobotController project, any project base you are working on for your own competition robot should be taken from that
 repository. I would recommend cloning the FtcRobotController project first, then add the TeamCode contents from this project. This
 would give you a base project that includes the latest FtcRobotController framework with a working field-centric mecanum drivetrain.
 
-If you want to avoid cloning the repository and want to download the entire project code, click on the 'Download Zip' link under 'Code'.
+> ***git clone Reference:*** https://github.com/FTCTeam11531/TechnoTrojanTraining_Drivetrain_Mecanum.git
+
+Or, if you prefer, you can download the entire project code. Click on the 'Download Zip' link under 'Code'.
 
 If you only need the TeamCode modules you can navigate to the java program module of interest, click the elipse '...', then click download (or ctrl + shift + s). Each
 TeamCode module will be explained below.
+
+There are no releases built since this is a training module; however, in the future we may create releases when the FtcRobotController framework version changes.
 
 ### Java Module(s)
 
@@ -32,17 +51,17 @@ When navigating to a specific java program module reference the path 'TeamCode/s
 
 > ***Package:*** org.firstinspires.ftc.teamcode.system  
 > ***Class name:*** sysDrivetrainMecanum.java
-> 
+>
 > Documentation coming soon
-> 
+>
 
 #### Subsystem - Lighting
 
 > ***Package:*** org.firstinspires.ftc.teamcode.system  
 > ***Class name:*** sysLighting.java
-> 
+>
 > Documentation coming soon
-> 
+>
 
 #### Utility - Robot Constants
 
@@ -50,7 +69,7 @@ When navigating to a specific java program module reference the path 'TeamCode/s
 > ***Class name:*** utilRobotConstants.java
 >
 > Documentation coming soon
-> 
+>
 
 #### Enumeration - Robot Speed
 
@@ -58,15 +77,15 @@ When navigating to a specific java program module reference the path 'TeamCode/s
 > ***Class name:*** enumStateDriveMotorMaxOutputPower.java
 >
 > Documentation coming soon
-> 
+>
 
 #### Enumeration - Robot Drive Mode
 
 > ***Package:*** org.firstinspires.ftc.teamcode.utility  
 > ***Class name:*** enumStateDrivetrainMode.java
-> 
+>
 > Documentation coming soon
-> 
+>
 
 #### OpMode - Teleop - Main Routine
 
@@ -74,7 +93,7 @@ When navigating to a specific java program module reference the path 'TeamCode/s
 > ***Class name:*** opmodeTeleopMain.java
 >
 > Documentation coming soon
-> 
+>
 
 ## Running OpMode: Teleop - 'TTT: Drivetrain Mecanum'
 
