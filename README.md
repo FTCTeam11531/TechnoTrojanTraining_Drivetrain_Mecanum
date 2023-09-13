@@ -47,20 +47,48 @@ Each TeamCode java program module added to the base FtcRobotController project/f
 
 When navigating to a specific java program module reference the path 'TeamCode/src/main/java' then the listed package path.
 
-#### Subsystem - Drivetrain
+#### System - Drivetrain
 
 > ***Package:*** org.firstinspires.ftc.teamcode.system  
 > ***Class name:*** sysDrivetrainMecanum.java
 >
-> Documentation coming soon
+> System Level Class
+>
+> The Drivetrain system class contains any elements related to the drivetrain.   
+> This includes:
+> - define hardware in the drivetrain
+> - initialize drivetrain hardware when the system class is initialized
+> - define actions (methods) related to drivetrain function(s)
+    >   - actions are defined, but the execution is performed in the opmode
+> - get methods used to retrieve data from the drivetrain
+> - set methods used to set properties for the drivetrain
+>
+> Action Methods include:
+> - driveMecanum - robot-centric drive controls
+> - driveMecanumFieldCentric - field-centric drive controls
+> - resetRobotHeading - reset the robot heading if needed (correction for field-centic)
+> - resetZeroRobotHeading - reset during transition from autonomous to teleop (correction for field-centric)
 >
 
-#### Subsystem - Lighting
+#### System - Lighting
 
 > ***Package:*** org.firstinspires.ftc.teamcode.system  
 > ***Class name:*** sysLighting.java
 >
-> Documentation coming soon
+> System Level Class
+>
+> The Lighting system class contains any elements related to the robot lighting.   
+> This includes:
+> - define hardware in the lighting system
+> - initialize lighting hardware when the system class is initialized
+> - define actions (methods) related to lighting function(s)
+    >   - actions are defined, but the execution is performed in the opmode
+> - get methods used to retrieve data from the lighting system
+> - set methods used to set properties for the lighting system
+>
+> Action Methods include:
+> - checkValidLightPatter - used to skip specific light pattern names if using cycle methods
+> - get/set methods used to set or get the light pattern
 >
 
 #### Utility - Robot Constants
@@ -68,15 +96,32 @@ When navigating to a specific java program module reference the path 'TeamCode/s
 > ***Package:*** org.firstinspires.ftc.teamcode.utility  
 > ***Class name:*** utilRobotConstants.java
 >
-> Documentation coming soon
+> Utility Level Class
 >
+> The Robot Constants utility class contains ALL constant values used in any robot code module
+> Sub-classes are defined to better organize and use.
+>
+> Action Methods include:
+> - get/set methods only when needed
+> - convert methods that reference calculations within the utility class and other(s)
 
 #### Enumeration - Robot Speed
 
 > ***Package:*** org.firstinspires.ftc.teamcode.utility  
 > ***Class name:*** enumStateDriveMotorMaxOutputPower.java
 >
-> Documentation coming soon
+> Enumeration Class
+>
+> Enumeration to define and iterate a defined state for robot output power (speed).
+> Control/set state setting. Works like a defined key/value pair. The training
+> OpMode in this project sets a specific state during initialization and sets a state based on
+> button press.
+>
+> Current States (keys):
+> High
+> Medium
+> Low
+> Snail
 >
 
 #### Enumeration - Robot Drive Mode
@@ -84,7 +129,16 @@ When navigating to a specific java program module reference the path 'TeamCode/s
 > ***Package:*** org.firstinspires.ftc.teamcode.utility  
 > ***Class name:*** enumStateDrivetrainMode.java
 >
-> Documentation coming soon
+> Enumeration Class
+>
+> Enumeration to define and iterate a defined state for robot drive mode.
+> Control/set state setting. Works like a defined key/value pair. The training
+> OpMode in this project sets the specific state during initialization to 'Field_Centric'.
+> Changing modes could then be assigned to a button command if desired
+>
+> Current States (keys):
+> Field_Centric
+> Robot_Centric
 >
 
 #### OpMode - Teleop - Main Routine
@@ -92,7 +146,14 @@ When navigating to a specific java program module reference the path 'TeamCode/s
 > ***Package:*** org.firstinspires.ftc.teamcode.opmode  
 > ***Class name:*** opmodeTeleopMain.java
 >
-> Documentation coming soon
+> OpMode - Teleop
+>
+> The 'Main' Teleop OpMode for this training project. The OpMode will appear in the
+> driver hub to be selected. The initialization process will define the systems used
+> in the OpMode. This OpMode is fairly basic as it only performs drivetrain actions.
+>
+> See the Teleop documentation Controls section for additional information related to
+> gamepad mapping and more.
 >
 
 ## Running OpMode: Teleop - 'TTT: Drivetrain Mecanum'
