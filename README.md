@@ -20,10 +20,10 @@ or simply grab the specific java program modules you are interested in.
 
 ### FtcRobotController Framework
 
-> Reference: [FtcRobotController GitHub Repository](https://github.com/FIRST-Tech-Challenge/FtcRobotController)
-> Release Version: 9.0
-> Season: 2023/2024 (competition season)
-> Game: Centerstage
+> Reference: [FtcRobotController GitHub Repository](https://github.com/FIRST-Tech-Challenge/FtcRobotController)  
+> Release Version: 9.0  
+> Season: 2023/2024 (competition season)  
+> Game: Centerstage  
 
 ### Obtaining This Repository (TechnoTrojanTraining) Code
 
@@ -50,7 +50,7 @@ When navigating to a specific java program module reference the path 'TeamCode/s
 #### System - Drivetrain
 
 > ***Package:*** org.firstinspires.ftc.teamcode.system  
-> ***Class name:*** sysDrivetrainMecanum.java
+> ***Class name:*** sysDrivetrainMecanum.java  
 >
 > System Level Class
 >
@@ -58,8 +58,8 @@ When navigating to a specific java program module reference the path 'TeamCode/s
 > This includes:
 > - define hardware in the drivetrain
 > - initialize drivetrain hardware when the system class is initialized
-> - define actions (methods) related to drivetrain function(s)
-    >   - actions are defined, but the execution is performed in the opmode
+> - define actions (methods) related to drivetrain function(s)  
+>   - actions are defined, but the execution is performed in the opmode
 > - get methods used to retrieve data from the drivetrain
 > - set methods used to set properties for the drivetrain
 >
@@ -73,7 +73,7 @@ When navigating to a specific java program module reference the path 'TeamCode/s
 #### System - Lighting
 
 > ***Package:*** org.firstinspires.ftc.teamcode.system  
-> ***Class name:*** sysLighting.java
+> ***Class name:*** sysLighting.java  
 >
 > System Level Class
 >
@@ -81,8 +81,8 @@ When navigating to a specific java program module reference the path 'TeamCode/s
 > This includes:
 > - define hardware in the lighting system
 > - initialize lighting hardware when the system class is initialized
-> - define actions (methods) related to lighting function(s)
-    >   - actions are defined, but the execution is performed in the opmode
+> - define actions (methods) related to lighting function(s)  
+>   - actions are defined, but the execution is performed in the opmode
 > - get methods used to retrieve data from the lighting system
 > - set methods used to set properties for the lighting system
 >
@@ -117,11 +117,11 @@ When navigating to a specific java program module reference the path 'TeamCode/s
 > OpMode in this project sets a specific state during initialization and sets a state based on
 > button press.
 >
-> Current States (keys):
-> High
-> Medium
-> Low
-> Snail
+> Current States (keys):  
+> High  
+> Medium  
+> Low  
+> Snail  
 >
 
 #### Enumeration - Robot Drive Mode
@@ -136,9 +136,9 @@ When navigating to a specific java program module reference the path 'TeamCode/s
 > OpMode in this project sets the specific state during initialization to 'Field_Centric'.
 > Changing modes could then be assigned to a button command if desired
 >
-> Current States (keys):
-> Field_Centric
-> Robot_Centric
+> Current States (keys):  
+> Field_Centric  
+> Robot_Centric  
 >
 
 #### OpMode - Teleop - Main Routine

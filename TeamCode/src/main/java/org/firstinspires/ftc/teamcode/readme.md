@@ -20,9 +20,9 @@ or simply grab the specific java program modules you are interested in.
 
 ### FtcRobotController Framework
 
-> Reference: [FtcRobotController GitHub Repository](https://github.com/FIRST-Tech-Challenge/FtcRobotController)
-> Release Version: 9.0
-> Season: 2023/2024 (competition season)
+> Reference: [FtcRobotController GitHub Repository](https://github.com/FIRST-Tech-Challenge/FtcRobotController)  
+> Release Version: 9.0  
+> Season: 2023/2024 (competition season)  
 > Game: Centerstage
 
 ### Obtaining This Repository (TechnoTrojanTraining) Code
@@ -52,21 +52,21 @@ When navigating to a specific java program module reference the path 'TeamCode/s
 > ***Package:*** org.firstinspires.ftc.teamcode.system  
 > ***Class name:*** sysDrivetrainMecanum.java
 >
-> System Level Class  
->   
+> System Level Class
+>
 > The Drivetrain system class contains any elements related to the drivetrain.   
-> This includes:  
+> This includes:
 > - define hardware in the drivetrain
 > - initialize drivetrain hardware when the system class is initialized
 > - define actions (methods) related to drivetrain function(s)
->   - actions are defined, but the execution is performed in the opmode
+    >   - actions are defined, but the execution is performed in the opmode
 > - get methods used to retrieve data from the drivetrain
 > - set methods used to set properties for the drivetrain
-> 
+>
 > Action Methods include:
 > - driveMecanum - robot-centric drive controls
 > - driveMecanumFieldCentric - field-centric drive controls
-> - resetRobotHeading - reset the robot heading if needed (correction for field-centic) 
+> - resetRobotHeading - reset the robot heading if needed (correction for field-centic)
 > - resetZeroRobotHeading - reset during transition from autonomous to teleop (correction for field-centric)
 >
 
@@ -98,7 +98,7 @@ When navigating to a specific java program module reference the path 'TeamCode/s
 >
 > Utility Level Class
 >
-> The Robot Constants utility class contains ALL constant values used in any robot code module 
+> The Robot Constants utility class contains ALL constant values used in any robot code module
 > Sub-classes are defined to better organize and use.
 >
 > Action Methods include:
@@ -111,18 +111,18 @@ When navigating to a specific java program module reference the path 'TeamCode/s
 > ***Class name:*** enumStateDriveMotorMaxOutputPower.java
 >
 > Enumeration Class
-> 
-> Enumeration to define and iterate a defined state for robot output power (speed). 
-> Control/set state setting. Works like a defined key/value pair. The training 
-> OpMode in this project sets a specific state during initialization and sets a state based on 
+>
+> Enumeration to define and iterate a defined state for robot output power (speed).
+> Control/set state setting. Works like a defined key/value pair. The training
+> OpMode in this project sets a specific state during initialization and sets a state based on
 > button press.
-> 
-> Current States (keys):
-> High
-> Medium
-> Low
+>
+> Current States (keys):  
+> High  
+> Medium  
+> Low  
 > Snail
-> 
+>
 
 #### Enumeration - Robot Drive Mode
 
@@ -133,11 +133,11 @@ When navigating to a specific java program module reference the path 'TeamCode/s
 >
 > Enumeration to define and iterate a defined state for robot drive mode.
 > Control/set state setting. Works like a defined key/value pair. The training
-> OpMode in this project sets the specific state during initialization to 'Field_Centric'. 
-> Changing modes could then be assigned to a button command if desired 
+> OpMode in this project sets the specific state during initialization to 'Field_Centric'.
+> Changing modes could then be assigned to a button command if desired
 >
-> Current States (keys):
-> Field_Centric
+> Current States (keys):  
+> Field_Centric  
 > Robot_Centric
 >
 
@@ -148,11 +148,11 @@ When navigating to a specific java program module reference the path 'TeamCode/s
 >
 > OpMode - Teleop
 >
-> The 'Main' Teleop OpMode for this training project. The OpMode will appear in the 
+> The 'Main' Teleop OpMode for this training project. The OpMode will appear in the
 > driver hub to be selected. The initialization process will define the systems used
 > in the OpMode. This OpMode is fairly basic as it only performs drivetrain actions.
-> 
-> See the Teleop documentation Controls section for additional information related to 
+>
+> See the Teleop documentation Controls section for additional information related to
 > gamepad mapping and more.
 >
 
