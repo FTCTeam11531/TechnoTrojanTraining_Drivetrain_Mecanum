@@ -7,6 +7,7 @@ working examples for training new developers. These public modules will be updat
 as the FIRST FTC framework is updated.
 
 ## Installing
+
 The base project is from the FtcRobotController project/repository in the FIRST-Tech-Challenge Github organization.
 The modules that have been added as part of this training project are detailed below. You can either download the entire project
 or simply grab the specific java program modules you are interested in.
@@ -25,49 +26,55 @@ TeamCode module will be explained below.
 
 Each TeamCode java program module added to the base FtcRobotController project/framework is defined below.
 
-When navigating to a specific java program module reference the path: TeamCode/src/main/java then the listed package path.
+When navigating to a specific java program module reference the path 'TeamCode/src/main/java' then the listed package path.
 
 #### Subsystem - Drivetrain
 
-***Package:*** org.firstinspires.ftc.teamcode.system
-***class name:*** sysDrivetrainMecanum.java
-
-Documentation coming soon
+> ***Package:*** org.firstinspires.ftc.teamcode.system  
+> ***Class name:*** sysDrivetrainMecanum.java
+> 
+> Documentation coming soon
+> 
 
 #### Subsystem - Lighting
 
-***Package:*** org.firstinspires.ftc.teamcode.system
-***class name:*** sysLighting.java
-
-Documentation coming soon
+> ***Package:*** org.firstinspires.ftc.teamcode.system  
+> ***Class name:*** sysLighting.java
+> 
+> Documentation coming soon
+> 
 
 #### Utility - Robot Constants
 
-***Package:*** org.firstinspires.ftc.teamcode.utility
-***class name:*** utilRobotConstants.java
-
-Documentation coming soon
+> ***Package:*** org.firstinspires.ftc.teamcode.utility  
+> ***Class name:*** utilRobotConstants.java
+>
+> Documentation coming soon
+> 
 
 #### Enumeration - Robot Speed
 
-***Package:*** org.firstinspires.ftc.teamcode.utility
-***class name:*** enumStateDriveMotorMaxOutputPower.java
-
-Documentation coming soon
+> ***Package:*** org.firstinspires.ftc.teamcode.utility  
+> ***Class name:*** enumStateDriveMotorMaxOutputPower.java
+>
+> Documentation coming soon
+> 
 
 #### Enumeration - Robot Drive Mode
 
-***Package:*** org.firstinspires.ftc.teamcode.utility
-***class name:*** enumStateDrivetrainMode.java
-
-Documentation coming soon
+> ***Package:*** org.firstinspires.ftc.teamcode.utility  
+> ***Class name:*** enumStateDrivetrainMode.java
+> 
+> Documentation coming soon
+> 
 
 #### OpMode - Teleop - Main Routine
 
-***Package:*** org.firstinspires.ftc.teamcode.opmode
-***class name:*** opmodeTeleopMain.java
-
-Documentation coming soon
+> ***Package:*** org.firstinspires.ftc.teamcode.opmode  
+> ***Class name:*** opmodeTeleopMain.java
+>
+> Documentation coming soon
+> 
 
 ## Running OpMode: Teleop - 'TTT: Drivetrain Mecanum'
 
@@ -76,7 +83,7 @@ with the title 'TTT: Drivetrain Mecanum'.
 
 ### Controls
 
-#### Gamepad1 = Main Driver
+#### Gamepad1 - Main Driver
 
 Robot Movement
 - Axis (left_stick_x, left_stick_y): Drive
@@ -91,30 +98,32 @@ Override Settings
 - D-Pad Up + X: Reset Heading Override (and Raw)
 - Back: Switch between Field-Centric and Robot-Centric drive ***not in place!***
 
-#### Gamepad2 = Co-Driver
+#### Gamepad2 - Co-Driver
 
 NA - This program does not have any functions that require a co-driver/second gamepad
 
 ### OpMode Details
 
+#### Inertial Measurement Unit (IMU) - Location Planning
+
 If the hub containing the IMU you are using is mounted so that the "REV" logo does
 not face up, remap the IMU axes so that the z-axis points upward (normal to the floor.)
 
-             | +Z axis
-             |
-             |
-             |
-      _______|_____________     +Y axis (roll)
-     /       |_____________/|__________
-    /   REV / CONTROL     //
-    /       / HUB         //
-    /_______/_____________//
-    |_______/_____________|/
-    /
-    / +X axis (pitch)
+               | +Z axis
+               |
+               |
+               |
+        _______|_____________     +Y axis (roll)
+       /       |____________//__________
+      /   REV / CONTROL    //
+     /       / HUB        //
+    /_______/____________//
+    |______/____________|/
+          /
+         / +X axis (pitch)
 
-This diagram is derived from the axes in section 3.4 https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bno055-ds000.pdf
-and the placement of the dot/orientation from https://docs.revrobotics.com/duo-control/control-system-overview/dimensions#imu-location
+This diagram is derived from the axes in section 3.4 [Bosch Sensor Datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bno055-ds000.pdf)
+and the placement of the dot/orientation from [Rev Robotics - Control Hub Overview](https://docs.revrobotics.com/duo-control/control-system-overview/dimensions#imu-location)
 
 ## Additional Information
 
