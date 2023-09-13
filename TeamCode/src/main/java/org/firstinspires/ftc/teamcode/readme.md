@@ -6,8 +6,6 @@ The Techno Trojan Training series provides a series of program repositories that
 working examples for training new developers. These public modules will be updated and maintained
 as the FIRST FTC framework is updated.
 
----
-
 ## Installing
 
 The base project is from the FtcRobotController project/repository in the FIRST-Tech-Challenge Github organization.
@@ -26,79 +24,57 @@ TeamCode module will be explained below.
 
 ### Java Module(s)
 
----
-
 Each TeamCode java program module added to the base FtcRobotController project/framework is defined below.
 
 When navigating to a specific java program module reference the path 'TeamCode/src/main/java' then the listed package path.
 
----
-
 #### Subsystem - Drivetrain
 
----
-
-***Package:*** org.firstinspires.ftc.teamcode.system  
-***Class name:*** sysDrivetrainMecanum.java
-
-Documentation coming soon
-
----
+> ***Package:*** org.firstinspires.ftc.teamcode.system  
+> ***Class name:*** sysDrivetrainMecanum.java
+>
+> Documentation coming soon
+>
 
 #### Subsystem - Lighting
 
----
-
-***Package:*** org.firstinspires.ftc.teamcode.system  
-***Class name:*** sysLighting.java
-
-Documentation coming soon
-
----
+> ***Package:*** org.firstinspires.ftc.teamcode.system  
+> ***Class name:*** sysLighting.java
+>
+> Documentation coming soon
+>
 
 #### Utility - Robot Constants
 
----
-
-***Package:*** org.firstinspires.ftc.teamcode.utility  
-***Class name:*** utilRobotConstants.java
-
-Documentation coming soon
-
----
+> ***Package:*** org.firstinspires.ftc.teamcode.utility  
+> ***Class name:*** utilRobotConstants.java
+>
+> Documentation coming soon
+>
 
 #### Enumeration - Robot Speed
 
----
-
-***Package:*** org.firstinspires.ftc.teamcode.utility  
-***Class name:*** enumStateDriveMotorMaxOutputPower.java
-
-Documentation coming soon
-
----
+> ***Package:*** org.firstinspires.ftc.teamcode.utility  
+> ***Class name:*** enumStateDriveMotorMaxOutputPower.java
+>
+> Documentation coming soon
+>
 
 #### Enumeration - Robot Drive Mode
 
----
-
-***Package:*** org.firstinspires.ftc.teamcode.utility  
-***Class name:*** enumStateDrivetrainMode.java
-
-Documentation coming soon
-
----
+> ***Package:*** org.firstinspires.ftc.teamcode.utility  
+> ***Class name:*** enumStateDrivetrainMode.java
+>
+> Documentation coming soon
+>
 
 #### OpMode - Teleop - Main Routine
 
----
-
-***Package:*** org.firstinspires.ftc.teamcode.opmode  
-***Class name:*** opmodeTeleopMain.java
-
-Documentation coming soon
-
----
+> ***Package:*** org.firstinspires.ftc.teamcode.opmode  
+> ***Class name:*** opmodeTeleopMain.java
+>
+> Documentation coming soon
+>
 
 ## Running OpMode: Teleop - 'TTT: Drivetrain Mecanum'
 
@@ -106,8 +82,6 @@ After deploying the project to the Rev control hub this opMode can be found unde
 with the title 'TTT: Drivetrain Mecanum'.
 
 ### Controls
-
----
 
 #### Gamepad1 - Main Driver
 
@@ -130,8 +104,6 @@ NA - This program does not have any functions that require a co-driver/second ga
 
 ### OpMode Details
 
----
-
 #### Inertial Measurement Unit (IMU) - Location Planning
 
 If the hub containing the IMU you are using is mounted so that the "REV" logo does
@@ -152,8 +124,6 @@ not face up, remap the IMU axes so that the z-axis points upward (normal to the 
 
 This diagram is derived from the axes in section 3.4 [Bosch Sensor Datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bno055-ds000.pdf)
 and the placement of the dot/orientation from [Rev Robotics - Control Hub Overview](https://docs.revrobotics.com/duo-control/control-system-overview/dimensions#imu-location)
-
----
 
 ## Additional Information
 
