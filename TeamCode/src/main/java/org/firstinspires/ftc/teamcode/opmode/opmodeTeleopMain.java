@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.system.sysDrivetrainMecanum;
 import org.firstinspires.ftc.teamcode.utility.enumStateDriveMotorMaxOutputPower;
 import org.firstinspires.ftc.teamcode.utility.utilRobotConstants;
 
-@TeleOp(name="TT: Drivetrain Mecanum", group="training")
+@TeleOp(name="TTT: Drivetrain Mecanum", group="training")
 //@Disabled
 public class opmodeTeleopMain extends LinearOpMode {
     // ------------------------------------------------------------
