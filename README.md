@@ -20,10 +20,10 @@ or simply grab the specific java program modules you are interested in.
 
 ### FtcRobotController Framework
 
-> Reference: [FtcRobotController GitHub Repository](https://github.com/FIRST-Tech-Challenge/FtcRobotController)  
-> Release Version: 9.0  
-> Season: 2023/2024 (competition season)  
-> Game: Centerstage  
+> ***Reference:*** [FtcRobotController GitHub Repository](https://github.com/FIRST-Tech-Challenge/FtcRobotController)  
+> ***Release Version:*** 9.0  
+> ***Season:*** 2023/2024 (competition season)  
+> ***Game:*** Centerstage
 
 ### Obtaining This Repository (TechnoTrojanTraining) Code
 
@@ -36,7 +36,7 @@ would give you a base project that includes the latest FtcRobotController framew
 
 Or, if you prefer, you can download the entire project code. Click on the 'Download Zip' link under 'Code'.
 
-If you only need the TeamCode modules you can navigate to the java program module of interest, click the elipse '...', then click download (or ctrl + shift + s). Each
+If you only need the TeamCode modules you can navigate to the java program module of interest, click the elipse '...', then click download (or ctrl+shift+s). Each
 TeamCode module will be explained below.
 
 There are no releases built since this is a training module; however, in the future we may create releases when the FtcRobotController framework version changes.
@@ -50,20 +50,20 @@ When navigating to a specific java program module reference the path 'TeamCode/s
 #### System - Drivetrain
 
 > ***Package:*** org.firstinspires.ftc.teamcode.system  
-> ***Class name:*** sysDrivetrainMecanum.java  
+> ***Class name:*** sysDrivetrainMecanum.java
 >
-> System Level Class
+> ***System Level Class***
 >
 > The Drivetrain system class contains any elements related to the drivetrain.   
-> This includes:
+> ***This includes:***
 > - define hardware in the drivetrain
 > - initialize drivetrain hardware when the system class is initialized
-> - define actions (methods) related to drivetrain function(s)  
->   - actions are defined, but the execution is performed in the opmode
+> - define actions (methods) related to drivetrain function(s)
+    >   - actions are defined, but the execution is performed in the opmode
 > - get methods used to retrieve data from the drivetrain
 > - set methods used to set properties for the drivetrain
 >
-> Action Methods include:
+> ***Action Methods include:***
 > - driveMecanum - robot-centric drive controls
 > - driveMecanumFieldCentric - field-centric drive controls
 > - resetRobotHeading - reset the robot heading if needed (correction for field-centic)
@@ -73,20 +73,20 @@ When navigating to a specific java program module reference the path 'TeamCode/s
 #### System - Lighting
 
 > ***Package:*** org.firstinspires.ftc.teamcode.system  
-> ***Class name:*** sysLighting.java  
+> ***Class name:*** sysLighting.java
 >
-> System Level Class
+> ***System Level Class***
 >
 > The Lighting system class contains any elements related to the robot lighting.   
-> This includes:
+> ***This includes:***
 > - define hardware in the lighting system
 > - initialize lighting hardware when the system class is initialized
-> - define actions (methods) related to lighting function(s)  
->   - actions are defined, but the execution is performed in the opmode
+> - define actions (methods) related to lighting function(s)
+    >   - actions are defined, but the execution is performed in the opmode
 > - get methods used to retrieve data from the lighting system
 > - set methods used to set properties for the lighting system
 >
-> Action Methods include:
+> ***Action Methods include:***
 > - checkValidLightPatter - used to skip specific light pattern names if using cycle methods
 > - get/set methods used to set or get the light pattern
 >
@@ -96,12 +96,12 @@ When navigating to a specific java program module reference the path 'TeamCode/s
 > ***Package:*** org.firstinspires.ftc.teamcode.utility  
 > ***Class name:*** utilRobotConstants.java
 >
-> Utility Level Class
+> ***Utility Level Class***
 >
 > The Robot Constants utility class contains ALL constant values used in any robot code module
 > Sub-classes are defined to better organize and use.
 >
-> Action Methods include:
+> ***Action Methods include:***
 > - get/set methods only when needed
 > - convert methods that reference calculations within the utility class and other(s)
 
@@ -110,18 +110,18 @@ When navigating to a specific java program module reference the path 'TeamCode/s
 > ***Package:*** org.firstinspires.ftc.teamcode.utility  
 > ***Class name:*** enumStateDriveMotorMaxOutputPower.java
 >
-> Enumeration Class
+> ***Enumeration Class***
 >
 > Enumeration to define and iterate a defined state for robot output power (speed).
 > Control/set state setting. Works like a defined key/value pair. The training
 > OpMode in this project sets a specific state during initialization and sets a state based on
 > button press.
 >
-> Current States (keys):  
+> ***Current States (keys):***  
 > High  
 > Medium  
 > Low  
-> Snail  
+> Snail
 >
 
 #### Enumeration - Robot Drive Mode
@@ -129,16 +129,16 @@ When navigating to a specific java program module reference the path 'TeamCode/s
 > ***Package:*** org.firstinspires.ftc.teamcode.utility  
 > ***Class name:*** enumStateDrivetrainMode.java
 >
-> Enumeration Class
+> ***Enumeration Class***
 >
 > Enumeration to define and iterate a defined state for robot drive mode.
 > Control/set state setting. Works like a defined key/value pair. The training
 > OpMode in this project sets the specific state during initialization to 'Field_Centric'.
 > Changing modes could then be assigned to a button command if desired
 >
-> Current States (keys):  
+> ***Current States (keys):***  
 > Field_Centric  
-> Robot_Centric  
+> Robot_Centric
 >
 
 #### OpMode - Teleop - Main Routine
@@ -146,7 +146,7 @@ When navigating to a specific java program module reference the path 'TeamCode/s
 > ***Package:*** org.firstinspires.ftc.teamcode.opmode  
 > ***Class name:*** opmodeTeleopMain.java
 >
-> OpMode - Teleop
+> ***OpMode - Teleop***
 >
 > The 'Main' Teleop OpMode for this training project. The OpMode will appear in the
 > driver hub to be selected. The initialization process will define the systems used
