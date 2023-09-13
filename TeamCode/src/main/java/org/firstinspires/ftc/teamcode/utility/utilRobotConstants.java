@@ -37,7 +37,7 @@ public class utilRobotConstants {
     public static final class About {
         // Document Comments and any other 'About the Program' reference
         public static final String COMMENT_AUTHOR_NAME = "FTC Team 11531 - Green Team";
-        public static final String COMMENT_SEASON_PERIOD = "2022 / 2023";
+        public static final String COMMENT_SEASON_PERIOD = "2023 / 2024";
     }
 
     public static final class Configuration {
