@@ -166,9 +166,6 @@ public class opmodeTeleopMain extends LinearOpMode {
                 // Reset the Robot Heading (normally done on init of Drivetrain system)
                 sysDrivetrain.resetZeroRobotHeading();
 
-                // Confirm Action Complete
-//                sysSound.playSoundFileByName(utilRobotConstants.Sound.SOUND_FILE_NAME_ROGER_ROGER);
-
                 // Cycle Pause
                 sleep(utilRobotConstants.CommonSettings.SLEEP_TIMER_MILLISECONDS_DEFAULT);
             }
@@ -242,9 +239,6 @@ public class opmodeTeleopMain extends LinearOpMode {
         // ------------------------------------------------------------
         // Update the Transition Adjustment Value for the IMU
         utilRobotConstants.CommonSettings.setImuTransitionAdjustment(sysDrivetrain.getRobotHeadingRaw());
-
-        // Stop any Sounds that might be playing
-//        sysSound.stopAllSoundPlayback();
 
     }
 }
