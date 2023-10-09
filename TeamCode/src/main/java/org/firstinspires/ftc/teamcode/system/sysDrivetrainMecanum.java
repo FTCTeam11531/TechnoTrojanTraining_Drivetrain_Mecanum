@@ -1,15 +1,21 @@
 package org.firstinspires.ftc.teamcode.system;
 
+import com.qualcomm.hardware.bosch.BHI260IMU;
+//import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
+import com.qualcomm.robotcore.hardware.IMU;
 import com.qualcomm.robotcore.hardware.configuration.typecontainers.MotorConfigurationType;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.robotcore.external.navigation.AngularVelocity;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
+import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 import org.firstinspires.ftc.teamcode.utility.utilRobotConstants;
 import org.firstinspires.ftc.teamcode.utility.enumStateDrivetrainMode;
 import org.firstinspires.ftc.teamcode.utility.enumStateDriveMotorMaxOutputPower;
@@ -28,13 +34,19 @@ public class sysDrivetrainMecanum {
     // Define Drivetrain Output Power Enumerator
     public enumStateDriveMotorMaxOutputPower stateDriveMotorMaxOutputPower;
 
-    // Define Hardware
+    // Define Hardware - Motors
     private DcMotorEx leftFrontDrive, rightFrontDrive, leftBackDrive, rightBackDrive;
     private List<DcMotorEx> listMotorsDrivetrain;
 
-    // Robot Heading
-    private BNO055IMU imuUnit = null;
-    BNO055IMU.Parameters imuParameters;
+    // Define Hardware - Control Hub
+    private RevHubOrientationOnRobot controlHubOrientation = null;
+    private RevHubOrientationOnRobot.LogoFacingDirection controlHubLogoDirection = null;
+    private RevHubOrientationOnRobot.UsbFacingDirection controlHubUsbDirection = null;
+
+    // Define Hardware - IMU
+    private IMU imuUnit = null;
+    private IMU.Parameters imuParameters;
+
     private double trackHeadingRobot, trackHeadingOffset, trackHeadingError;
 
     public sysDrivetrainMecanum(LinearOpMode inOpMode) {
@@ -43,7 +55,7 @@ public class sysDrivetrainMecanum {
 
     public void init() {
         // Set Drivetrain Enumerator default value(s)
-        stateDrivetrainMode = enumStateDrivetrainMode.Field_Centric;
+        stateDrivetrainMode = enumStateDrivetrainMode.Robot_Centric;
         stateDriveMotorMaxOutputPower = enumStateDriveMotorMaxOutputPower.Low;
 
         // Define and Initialize Motors (note: need to use reference to actual OpMode).
@@ -72,36 +84,32 @@ public class sysDrivetrainMecanum {
         // Note: The settings here assume direct drive on left and right wheels.  Gear Reduction or 90 Deg drives may require direction flips
         // Reverse the right side motors
         // Reverse left motors if you are using NeveRests
-        leftFrontDrive.setDirection(DcMotorEx.Direction.FORWARD);
-        rightFrontDrive.setDirection(DcMotorEx.Direction.REVERSE);
-        leftBackDrive.setDirection(DcMotorEx.Direction.FORWARD);
-        rightBackDrive.setDirection(DcMotorEx.Direction.REVERSE);
+        leftFrontDrive.setDirection(DcMotorEx.Direction.REVERSE);
+        rightFrontDrive.setDirection(DcMotorEx.Direction.FORWARD);
+        leftBackDrive.setDirection(DcMotorEx.Direction.REVERSE);
+        rightBackDrive.setDirection(DcMotorEx.Direction.FORWARD);
 
-        // If the hub containing the IMU you are using is mounted so that the "REV" logo does
-        // not face up, remap the IMU axes so that the z-axis points upward (normal to the floor.)
+        // When using the newer IMU class be sure to initialize the IMU based on the orientation
+        // of the Control Hub to the robot.
         //
-        //             | +Z axis
-        //             |
-        //             |
-        //             |
-        //      _______|_____________     +Y axis (roll)
-        //     /       |_____________/|__________
-        //    /   REV / EXPANSION   //
-        //   /       / HUB         //
-        //  /_______/_____________//
-        // |_______/_____________|/
-        //        /
-        //       / +X axis (pitch)
+        // Refer to the link/article referenced below in regard to the IMU class and usage.
+        // Link: https://ftc-docs.firstinspires.org/en/latest/programming_resources/imu/imu.html
         //
-        // This diagram is derived from the axes in section 3.4 https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bno055-ds000.pdf
-        // and the placement of the dot/orientation from https://docs.revrobotics.com/rev-control-system/control-system-overview/dimensions#imu-location
+        // This training module uses one of the orthogonal mounting options.
+
+        // Control Hub - Orientation
+        controlHubLogoDirection = RevHubOrientationOnRobot.LogoFacingDirection.UP;
+        controlHubUsbDirection = RevHubOrientationOnRobot.UsbFacingDirection.FORWARD;
+
+        controlHubOrientation = new RevHubOrientationOnRobot(controlHubLogoDirection, controlHubUsbDirection);
 
         // Initialize the IMU board/unit on the Rev Control Hub
-        imuUnit = sysOpMode.hardwareMap.get(BNO055IMU.class, utilRobotConstants.Configuration.LABEL_CONTROLHUB_IMU);
-        imuParameters = new BNO055IMU.Parameters();
+        imuUnit = sysOpMode.hardwareMap.get(IMU.class, utilRobotConstants.Configuration.LABEL_CONTROLHUB_IMU);
+
+        imuParameters = new IMU.Parameters(controlHubOrientation);
 
         // Set the Angle Unit to Radians
-        imuParameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
+//        imuParameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
 
         // Initialize the IMU unit
         imuUnit.initialize(imuParameters);
@@ -246,7 +254,7 @@ public class sysDrivetrainMecanum {
     public void resetZeroRobotHeading() {
 
         // Set the Heading Offset to the IMU raw heading
-        imuUnit.initialize(imuParameters);
+        imuUnit.resetYaw();
         utilRobotConstants.CommonSettings.setImuTransitionAdjustment(0);
     }
 
@@ -267,14 +275,10 @@ public class sysDrivetrainMecanum {
 
         // Get heading value from the IMU
         // Read inverse IMU heading, as the IMU heading is CW positive
-        outRobotHeadingValue = -(imuUnit.getAngularOrientation().firstAngle);
-//        outRobotHeadingValue = imuUnit.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
+        outRobotHeadingValue = -(imuUnit.getRobotYawPitchRollAngles().getYaw(AngleUnit.RADIANS));
 
         // Should the IMU heading be inversed? Does it matter?
         // Will need to view the heading readout on the driver hub
-
-        //imuUnit.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle
-
         return outRobotHeadingValue;
     }
 
@@ -322,7 +326,8 @@ public class sysDrivetrainMecanum {
     public double getSteeringCorrection(double inTargetHeader, double inProportionalGain) {
 
         // Get robot header by subtracking the offset from the heading
-        trackHeadingRobot = imuUnit.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
+//        trackHeadingRobot = imuUnit.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
+        trackHeadingRobot = imuUnit.getRobotOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES).firstAngle;
 
         // Determine the heading current error
         trackHeadingError = inTargetHeader - trackHeadingRobot;
@@ -332,6 +337,38 @@ public class sysDrivetrainMecanum {
 //        while (trackHeadingError <= -180) trackHeadingError += 360;
 
         return Range.clip(trackHeadingError * inProportionalGain, -1, 1);
+    }
+
+    /**
+     * <h2>Get Robot Angle(s)</h2>
+     * <hr>
+     * <b>Author:</b> {@value utilRobotConstants.About#COMMENT_AUTHOR_NAME}<br>
+     * <b>Season:</b> {@value utilRobotConstants.About#COMMENT_SEASON_PERIOD}<br>
+     * <hr>
+     * <p>
+     * Get the robots angles from the imu unit.
+     * </p>
+     * @return
+     * <br>
+     */
+    public YawPitchRollAngles getRobotAngles() {
+        return imuUnit.getRobotYawPitchRollAngles();
+    }
+
+    /**
+     * <h2>Get Robot Angular Velocity Value(s)</h2>
+     * <hr>
+     * <b>Author:</b> {@value utilRobotConstants.About#COMMENT_AUTHOR_NAME}<br>
+     * <b>Season:</b> {@value utilRobotConstants.About#COMMENT_SEASON_PERIOD}<br>
+     * <hr>
+     * <p>
+     * Get the angular velocity values from the imu unit.
+     * </p>
+     * @return
+     * <br>
+     */
+    public AngularVelocity getRobotAngularVelocity() {
+        return imuUnit.getRobotAngularVelocity(AngleUnit.DEGREES);
     }
 
     /**

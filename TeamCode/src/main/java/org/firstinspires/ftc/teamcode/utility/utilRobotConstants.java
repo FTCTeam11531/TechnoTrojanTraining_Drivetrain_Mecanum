@@ -56,6 +56,8 @@ public class utilRobotConstants {
         // Lighting
         public static final String LABEL_CONTROLLER_LIGHTING = "lighting_control";
 
+        public static final boolean ENABLE_LIGHTING = false;
+
     }
 
     /**

@@ -6,9 +6,11 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.system.sysLighting;
 import org.firstinspires.ftc.teamcode.system.sysDrivetrainMecanum;
 import org.firstinspires.ftc.teamcode.utility.enumStateDriveMotorMaxOutputPower;
+import org.firstinspires.ftc.teamcode.utility.enumStateDrivetrainMode;
 import org.firstinspires.ftc.teamcode.utility.utilRobotConstants;
 
 @TeleOp(name="TTT: Drivetrain Mecanum", group="training")
@@ -43,8 +45,11 @@ public class opmodeTeleopMain extends LinearOpMode {
         // ------------------------------------------------------------
         // Initialize System(s) - set different light mode between each system init
         // ------------------------------------------------------------
+        while(opModeInInit() && !isStopRequested()) {
 
-        sysLighting.init();
+        }
+
+        sysLighting.init(utilRobotConstants.Configuration.ENABLE_LIGHTING);
         sysLighting.setLightPattern(utilRobotConstants.Lighting.LIGHT_PATTERN_SYSTEM_INIT_LIGHTING);
 
         sysDrivetrain.init();
@@ -108,17 +113,20 @@ public class opmodeTeleopMain extends LinearOpMode {
             // -- Robot Movement
             // -- -- Axis (left_stick_x, left_stick_y): Drive
             // -- -- Axis (right_stick_x): Rotate
+            // -- -- X: Set Output Speed to High
             // -- -- Y: Set Output Speed to Med
             // -- -- A: Set Output Speed to Low
+            // -- -- B: Set Output Speed to Snail
+            //
+            // -- Drive Mode Settings
+            // -- -- D-Pad Left: Arcade Mode
+            // -- -- D-Pad Left: Tank Mode
             //
             // -- Robot Movement - Function(s) not in place!
             // -- -- X: 180 spin
             //
             // -- Override Settings
             // -- -- D-Pad Up + X: Reset Heading Override (and Raw)
-            //
-            // -- Not in place!
-            // -- -- Back: Switch between Field-Centric and Robot-Centric drive
             //
             // ------------------------------------------------------------
             // Gamepad2 = Co-Driver
@@ -133,7 +141,7 @@ public class opmodeTeleopMain extends LinearOpMode {
             // -- robot orientation to field
             // -- installed direction of control hub
             // -- orientation of drivetrain/motors
-            inputYaw =  -(gamepad1.right_stick_x);
+            inputYaw =  gamepad1.right_stick_x;
             inputAxial = -(gamepad1.left_stick_y);
             inputLateral = gamepad1.left_stick_x;
 
@@ -147,6 +155,11 @@ public class opmodeTeleopMain extends LinearOpMode {
                 sysDrivetrain.driveMecanumFieldCentric(inputAxial, inputLateral, inputYaw, sysDrivetrain.getValueDrivetrainOutputPower());
             }
 
+            // Button Action - Set Output Power Mode to High
+            if(gamepad1.x) {
+                sysDrivetrain.stateDriveMotorMaxOutputPower = enumStateDriveMotorMaxOutputPower.High;
+            }
+
             // Button Action - Set Output Power Mode to Medium
             if(gamepad1.y) {
                 sysDrivetrain.stateDriveMotorMaxOutputPower = enumStateDriveMotorMaxOutputPower.Medium;
@@ -155,6 +168,21 @@ public class opmodeTeleopMain extends LinearOpMode {
             // Button Action - Set Output Power Mode to Low
             if(gamepad1.a) {
                 sysDrivetrain.stateDriveMotorMaxOutputPower = enumStateDriveMotorMaxOutputPower.Low;
+            }
+
+            // Button Action - Set Output Power Mode to Snail Mode
+            if(gamepad1.b) {
+                sysDrivetrain.stateDriveMotorMaxOutputPower = enumStateDriveMotorMaxOutputPower.Snail;
+            }
+
+            // Button Action - Set drive mode to 'Arcade'
+            if(gamepad1.dpad_left) {
+                sysDrivetrain.stateDrivetrainMode = enumStateDrivetrainMode.Field_Centric;
+            }
+
+            // Button Action - Set drive mode to 'Tank'
+            if(gamepad1.dpad_right) {
+                sysDrivetrain.stateDrivetrainMode = enumStateDrivetrainMode.Robot_Centric;
             }
 
             // ------------------------------------------------------------
@@ -212,14 +240,25 @@ public class opmodeTeleopMain extends LinearOpMode {
             telemetry.addData("Robot Heading Raw", sysDrivetrain.getRobotHeadingRaw());
             telemetry.addData("Heading Adjustment", utilRobotConstants.CommonSettings.getImuTransitionAdjustment());
             telemetry.addData("Robot Heading (Adjusted)", sysDrivetrain.getRobotHeadingAdj());
+            telemetry.addData("-", "------------------------------");
+            telemetry.addData("Robot Angle - Yaw (Z)", sysDrivetrain.getRobotAngles().getYaw(AngleUnit.DEGREES));
+            telemetry.addData("Robot Angle - Pitch (X)", sysDrivetrain.getRobotAngles().getPitch(AngleUnit.DEGREES));
+            telemetry.addData("Robot Angle - Yaw (Z)", sysDrivetrain.getRobotAngles().getRoll(AngleUnit.DEGREES));
+            telemetry.addData("-", "------------------------------");
+            telemetry.addData("Robot Angle Velocity - Yaw (Z)", sysDrivetrain.getRobotAngularVelocity().zRotationRate);
+            telemetry.addData("Robot Angle Velocity - Pitch (X)", sysDrivetrain.getRobotAngularVelocity().xRotationRate);
+            telemetry.addData("Robot Angle Velocity - Yaw (Z)", sysDrivetrain.getRobotAngularVelocity().yRotationRate);
+            telemetry.addData("-", "------------------------------");
 
             // ------------------------------------------------------------
             // - Lighting telemetry
             // ------------------------------------------------------------
-            telemetry.addData("-", "------------------------------");
-            telemetry.addData("-", "-- Lighting");
-            telemetry.addData("-", "------------------------------");
-            telemetry.addData("Pattern", sysLighting.ledLightPattern.toString());
+            if(utilRobotConstants.Configuration.ENABLE_LIGHTING) {
+                telemetry.addData("-", "------------------------------");
+                telemetry.addData("-", "-- Lighting");
+                telemetry.addData("-", "------------------------------");
+                telemetry.addData("Pattern", sysLighting.ledLightPattern.toString());
+            }
 
             // ------------------------------------------------------------
             // - send telemetry to driver hub
