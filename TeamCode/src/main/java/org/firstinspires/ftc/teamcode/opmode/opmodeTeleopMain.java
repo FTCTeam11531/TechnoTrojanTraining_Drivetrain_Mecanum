@@ -175,12 +175,15 @@ public class opmodeTeleopMain extends LinearOpMode {
                 sysDrivetrain.stateDriveMotorMaxOutputPower = enumStateDriveMotorMaxOutputPower.Snail;
             }
 
-            // Button Action - Set drive mode to 'Arcade'
+            // Button Action - Set drive mode to 'Field Centric'
             if(gamepad1.dpad_left) {
                 sysDrivetrain.stateDrivetrainMode = enumStateDrivetrainMode.Field_Centric;
+
+                // Reset the Robot Heading (normally done on init of Drivetrain system)
+                sysDrivetrain.resetZeroRobotHeading();
             }
 
-            // Button Action - Set drive mode to 'Tank'
+            // Button Action - Set drive mode to 'Robot Centric'
             if(gamepad1.dpad_right) {
                 sysDrivetrain.stateDrivetrainMode = enumStateDrivetrainMode.Robot_Centric;
             }

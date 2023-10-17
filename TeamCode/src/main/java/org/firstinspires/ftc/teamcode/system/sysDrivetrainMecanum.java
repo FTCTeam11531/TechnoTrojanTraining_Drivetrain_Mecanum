@@ -55,7 +55,7 @@ public class sysDrivetrainMecanum {
 
     public void init() {
         // Set Drivetrain Enumerator default value(s)
-        stateDrivetrainMode = enumStateDrivetrainMode.Robot_Centric;
+        stateDrivetrainMode = enumStateDrivetrainMode.Field_Centric;
         stateDriveMotorMaxOutputPower = enumStateDriveMotorMaxOutputPower.Low;
 
         // Define and Initialize Motors (note: need to use reference to actual OpMode).
@@ -99,7 +99,7 @@ public class sysDrivetrainMecanum {
 
         // Control Hub - Orientation
         controlHubLogoDirection = RevHubOrientationOnRobot.LogoFacingDirection.UP;
-        controlHubUsbDirection = RevHubOrientationOnRobot.UsbFacingDirection.FORWARD;
+        controlHubUsbDirection = RevHubOrientationOnRobot.UsbFacingDirection.BACKWARD;
 
         controlHubOrientation = new RevHubOrientationOnRobot(controlHubLogoDirection, controlHubUsbDirection);
 
