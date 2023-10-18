@@ -1,211 +1,131 @@
-# Techno Trojan Training - Drivetrain (Mecanum)
+## TeamCode Module
 
 Welcome!
 
-The Techno Trojan Training series provides a series of program repositories that provide
-working examples for training new developers. These public modules will be updated and maintained
-as the FIRST FTC framework is updated.
+This module, TeamCode, is the place where you will write/paste the code for your team's
+robot controller App. This module is currently empty (a clean slate) but the
+process for adding OpModes is straightforward.
 
-## Downloading the Project
+## Creating your own OpModes
 
-### TechnoTrojanTraining (TTT) - Training Series Repository
+The easiest way to create your own OpMode is to copy a Sample OpMode and make it your own.
 
-This repository is intended to be used as a training guide to help when building out your own competition
-program. This repository is not intended to be used 'as-is' for any competition robot codebase. However, the
-team code within this repository can be used to bring into your own project and adapted to your own robot configuration.
+Sample opmodes exist in the FtcRobotController module.
+To locate these samples, find the FtcRobotController module in the "Project/Android" tab.
 
-The base project is from the FtcRobotController project/repository in the FIRST-Tech-Challenge Github organization.
-The modules that have been added (TeamCode) as part of this training project are detailed individually below. You can either download the entire (TechnoTrojanTraining) project
-or simply grab the specific java program modules you are interested in.
+Expand the following tree elements:
+ FtcRobotController/java/org.firstinspires.ftc.robotcontroller/external/samples
 
-### FtcRobotController Framework
+### Naming of Samples
 
-> ***Reference:*** [FtcRobotController GitHub Repository](https://github.com/FIRST-Tech-Challenge/FtcRobotController)  
-> ***Release Version:*** 9.0  
-> ***Season:*** 2023/2024 (competition season)  
-> ***Game:*** Centerstage
+To gain a better understanding of how the samples are organized, and how to interpret the
+naming system, it will help to understand the conventions that were used during their creation.
 
-### Obtaining This Repository (TechnoTrojanTraining) Code
+These conventions are described (in detail) in the sample_conventions.md file in this folder.
 
-If you are familiar with GitHub (and have an account) you can clone this repository locally. Since this project is derived from the
-FIRST FtcRobotController project, any project base you are working on for your own competition robot should be taken from that
-repository. I would recommend cloning the FtcRobotController project first, then add the TeamCode contents from this project. This
-would give you a base project that includes the latest FtcRobotController framework with a working field-centric mecanum drivetrain.
+To summarize: A range of different samples classes will reside in the java/external/samples.
+The class names will follow a naming convention which indicates the purpose of each class.
+The prefix of the name will be one of the following:
 
-> ***git clone Reference:*** https://github.com/FTCTeam11531/TechnoTrojanTraining_Drivetrain_Mecanum.git
+Basic:  	This is a minimally functional OpMode used to illustrate the skeleton/structure
+            of a particular style of OpMode.  These are bare bones examples.
 
-Or, if you prefer, you can download the entire project code. Click on the 'Download Zip' link under 'Code'.
+Sensor:    	This is a Sample OpMode that shows how to use a specific sensor.
+            It is not intended to drive a functioning robot, it is simply showing the minimal code
+            required to read and display the sensor values.
 
-If you only need the TeamCode modules you can navigate to the java program module of interest, click the elipse '...', then click download (or ctrl+shift+s). Each
-TeamCode module will be explained below.
+Robot:	    This is a Sample OpMode that assumes a simple two-motor (differential) drive base.
+            It may be used to provide a common baseline driving OpMode, or
+            to demonstrate how a particular sensor or concept can be used to navigate.
 
-There are no releases built since this is a training module; however, in the future we may create releases when the FtcRobotController framework version changes.
+Concept:	This is a sample OpMode that illustrates performing a specific function or concept.
+            These may be complex, but their operation should be explained clearly in the comments,
+            or the comments should reference an external doc, guide or tutorial.
+            Each OpMode should try to only demonstrate a single concept so they are easy to
+            locate based on their name.  These OpModes may not produce a drivable robot.
 
-### Java Module(s)
+After the prefix, other conventions will apply:
 
-Each TeamCode java program module added to the base FtcRobotController project/framework is defined below.
+* Sensor class names are constructed as:    Sensor - Company - Type
+* Robot class names are constructed as:     Robot - Mode - Action - OpModetype
+* Concept class names are constructed as:   Concept - Topic - OpModetype
 
-When navigating to a specific java program module reference the path 'TeamCode/src/main/java' then the listed package path.
+Once you are familiar with the range of samples available, you can choose one to be the
+basis for your own robot.  In all cases, the desired sample(s) needs to be copied into
+your TeamCode module to be used.
 
-#### System - Drivetrain
+This is done inside Android Studio directly, using the following steps:
 
-> ***Package:*** org.firstinspires.ftc.teamcode.system  
-> ***Class name:*** sysDrivetrainMecanum.java
->
-> ***System Level Class***
->
-> The Drivetrain system class contains any elements related to the drivetrain.   
-> ***This includes:***
-> - define hardware in the drivetrain
-> - initialize drivetrain hardware when the system class is initialized
-> - define actions (methods) related to drivetrain function(s)
-    >   - actions are defined, but the execution is performed in the opmode
-> - get methods used to retrieve data from the drivetrain
-> - set methods used to set properties for the drivetrain
->
-> ***Action Methods include:***
-> - driveMecanum - robot-centric drive controls
-> - driveMecanumFieldCentric - field-centric drive controls
-> - resetRobotHeading - reset the robot heading if needed (correction for field-centic)
-> - resetZeroRobotHeading - reset during transition from autonomous to teleop (correction for field-centric)
->
+ 1) Locate the desired sample class in the Project/Android tree.
 
-#### System - Lighting
+ 2) Right click on the sample class and select "Copy"
 
-> ***Package:*** org.firstinspires.ftc.teamcode.system  
-> ***Class name:*** sysLighting.java
->
-> ***System Level Class***
->
-> The Lighting system class contains any elements related to the robot lighting.   
-> ***This includes:***
-> - define hardware in the lighting system
-> - initialize lighting hardware when the system class is initialized
-> - define actions (methods) related to lighting function(s)
-    >   - actions are defined, but the execution is performed in the opmode
-> - get methods used to retrieve data from the lighting system
-> - set methods used to set properties for the lighting system
->
-> ***Action Methods include:***
-> - checkValidLightPatter - used to skip specific light pattern names if using cycle methods
-> - get/set methods used to set or get the light pattern
->
+ 3) Expand the  TeamCode/java folder
 
-#### Utility - Robot Constants
+ 4) Right click on the org.firstinspires.ftc.teamcode folder and select "Paste"
 
-> ***Package:*** org.firstinspires.ftc.teamcode.utility  
-> ***Class name:*** utilRobotConstants.java
->
-> ***Utility Level Class***
->
-> The Robot Constants utility class contains ALL constant values used in any robot code module
-> Sub-classes are defined to better organize and use.
->
-> ***Action Methods include:***
-> - get/set methods only when needed
-> - convert methods that reference calculations within the utility class and other(s)
+ 5) You will be prompted for a class name for the copy.
+    Choose something meaningful based on the purpose of this class.
+    Start with a capital letter, and remember that there may be more similar classes later.
 
-#### Enumeration - Robot Speed
+Once your copy has been created, you should prepare it for use on your robot.
+This is done by adjusting the OpMode's name, and enabling it to be displayed on the
+Driver Station's OpMode list.
 
-> ***Package:*** org.firstinspires.ftc.teamcode.utility  
-> ***Class name:*** enumStateDriveMotorMaxOutputPower.java
->
-> ***Enumeration Class***
->
-> Enumeration to define and iterate a defined state for robot output power (speed).
-> Control/set state setting. Works like a defined key/value pair. The training
-> OpMode in this project sets a specific state during initialization and sets a state based on
-> button press.
->
-> ***Current States (keys):***  
-> High  
-> Medium  
-> Low  
-> Snail
->
+Each OpMode sample class begins with several lines of code like the ones shown below:
 
-#### Enumeration - Robot Drive Mode
+```
+ @TeleOp(name="Template: Linear OpMode", group="Linear Opmode")
+ @Disabled
+```
 
-> ***Package:*** org.firstinspires.ftc.teamcode.utility  
-> ***Class name:*** enumStateDrivetrainMode.java
->
-> ***Enumeration Class***
->
-> Enumeration to define and iterate a defined state for robot drive mode.
-> Control/set state setting. Works like a defined key/value pair. The training
-> OpMode in this project sets the specific state during initialization to 'Field_Centric'.
-> Changing modes could then be assigned to a button command if desired
->
-> ***Current States (keys):***  
-> Field_Centric  
-> Robot_Centric
->
+The name that will appear on the driver station's "opmode list" is defined by the code:
+ ``name="Template: Linear OpMode"``
+You can change what appears between the quotes to better describe your opmode.
+The "group=" portion of the code can be used to help organize your list of OpModes.
 
-#### OpMode - Teleop - Main Routine
+As shown, the current OpMode will NOT appear on the driver station's OpMode list because of the
+  ``@Disabled`` annotation which has been included.
+This line can simply be deleted , or commented out, to make the OpMode visible.
 
-> ***Package:*** org.firstinspires.ftc.teamcode.opmode  
-> ***Class name:*** opmodeTeleopMain.java
->
-> ***OpMode - Teleop***
->
-> The 'Main' Teleop OpMode for this training project. The OpMode will appear in the
-> driver hub to be selected. The initialization process will define the systems used
-> in the OpMode. This OpMode is fairly basic as it only performs drivetrain actions.
->
-> See the Teleop documentation Controls section for additional information related to
-> gamepad mapping and more.
->
 
-## Running OpMode: Teleop - 'TTT: Drivetrain Mecanum'
 
-After deploying the project to the Rev control hub this opMode can be found under the TeleOp mode selection
-with the title 'TTT: Drivetrain Mecanum'.
+## ADVANCED Multi-Team App management:  Cloning the TeamCode Module
 
-### Controls
+In some situations, you have multiple teams in your club and you want them to all share
+a common code organization, with each being able to *see* the others code but each having
+their own team module with their own code that they maintain themselves.
 
-#### Gamepad1 - Main Driver
+In this situation, you might wish to clone the TeamCode module, once for each of these teams.
+Each of the clones would then appear along side each other in the Android Studio module list,
+together with the FtcRobotController module (and the original TeamCode module).
 
-Robot Movement
-- Axis (left_stick_x, left_stick_y): Drive
-- Axis (right_stick_x): Rotate
-- Y: Set Output Speed to Med
-- A: Set Output Speed to Low
+Selective Team phones can then be programmed by selecting the desired Module from the pulldown list
+prior to clicking to the green Run arrow.
 
-Robot Movement - Function(s) ***not in place!***
-- X: 180 spin
+Warning:  This is not for the inexperienced Software developer.
+You will need to be comfortable with File manipulations and managing Android Studio Modules.
+These changes are performed OUTSIDE of Android Studios, so close Android Studios before you do this.
+ 
+Also.. Make a full project backup before you start this :)
 
-Override Settings
-- D-Pad Up + X: Reset Heading Override (and Raw)
-- Back: Switch between Field-Centric and Robot-Centric drive ***not in place!***
+To clone TeamCode, do the following:
 
-#### Gamepad2 - Co-Driver
+Note: Some names start with "Team" and others start with "team".  This is intentional.
 
-NA - This program does not have any functions that require a co-driver/second gamepad
+1)  Using your operating system file management tools, copy the whole "TeamCode"
+    folder to a sibling folder with a corresponding new name, eg: "Team0417".
 
-### OpMode Details
+2)  In the new Team0417 folder, delete the TeamCode.iml file.
 
-#### Inertial Measurement Unit (IMU) - Location Planning
+3)  the new Team0417 folder, rename the "src/main/java/org/firstinspires/ftc/teamcode" folder
+    to a matching name with a lowercase 'team' eg:  "team0417".
 
-If the hub containing the IMU you are using is mounted so that the "REV" logo does
-not face up, remap the IMU axes so that the z-axis points upward (normal to the floor.)
+4)  In the new Team0417/src/main folder, edit the "AndroidManifest.xml" file, change the line that contains
+         package="org.firstinspires.ftc.teamcode"
+    to be
+         package="org.firstinspires.ftc.team0417"
 
-               | +Z axis
-               |
-               |
-               |
-        _______|_____________     +Y axis (roll)
-       /       |____________//__________
-      /   REV / CONTROL    //
-     /       / HUB        //
-    /_______/____________//
-    |______/____________|/
-          /
-         / +X axis (pitch)
-
-This diagram is derived from the axes in section 3.4 [Bosch Sensor Datasheet](https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bno055-ds000.pdf)
-and the placement of the dot/orientation from [Rev Robotics - Control Hub Overview](https://docs.revrobotics.com/duo-control/control-system-overview/dimensions#imu-location)
-
-## Additional Information
-
-Documentation coming soon
-
+5)  Add:    include ':Team0417' to the "/settings.gradle" file.
+    
+6)  Open up Android Studios and clean out any old files by using the menu to "Build/Clean Project""

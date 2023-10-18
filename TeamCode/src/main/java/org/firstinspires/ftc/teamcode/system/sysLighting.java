@@ -13,6 +13,7 @@ public class sysLighting {
     private RevBlinkinLedDriver ledLightController;
     public RevBlinkinLedDriver.BlinkinPattern ledLightPattern;
 
+    private boolean enableLightingFlag = false;
 
     /**
      * <h2>Lighting System Constructor</h2>
@@ -44,19 +45,31 @@ public class sysLighting {
      * All of the hardware devices are accessed via the hardware map, and initialized.
      * <hr>
      */
-    public void init()    {
+    public void init(boolean enableLighting)    {
+
+        // Set the Lighting Override based on the enable lighting initialization settings
+        enableLightingFlag = enableLighting;
+
         // Define and Initialize Motors (note: need to use reference to actual OpMode).
         // Initialize the hardware variables. Note that the strings used here must correspond
         // to the names assigned during the robot configuration step on the DS or RC devices.
-        ledLightController = sysOpMode.hardwareMap.get(RevBlinkinLedDriver.class, utilRobotConstants.Configuration.LABEL_CONTROLLER_LIGHTING);
+        if(enableLightingFlag) {
+            ledLightController = sysOpMode.hardwareMap.get(RevBlinkinLedDriver.class, utilRobotConstants.Configuration.LABEL_CONTROLLER_LIGHTING);
 
-        // Set the initial lighting pattern
-        ledLightPattern = utilRobotConstants.Lighting.LIGHT_PATTERN_DEFAULT;
+            // Set the initial lighting pattern
+            ledLightPattern = utilRobotConstants.Lighting.LIGHT_PATTERN_DEFAULT;
+        }
 
         // Display telemetry
         sysOpMode.telemetry.addData(">", "--------------------------------");
         sysOpMode.telemetry.addData(">", " System: Lighting Initialized");
         sysOpMode.telemetry.addData(">", "--------------------------------");
+
+        if(!enableLightingFlag) {
+            sysOpMode.telemetry.addData(">", " Lighting Disabled");
+            sysOpMode.telemetry.addData(">", "--------------------------------");
+        }
+
         sysOpMode.telemetry.update();
     }
 
@@ -174,14 +187,17 @@ public class sysLighting {
      */
     public void setLightPattern(RevBlinkinLedDriver.BlinkinPattern inLightPattern) {
 
-        // Check to verify the pattern is valid
-        if(checkValidLightPattern(inLightPattern)) {
+        // Only when lighting system is enabled
+        if(enableLightingFlag) {
 
-            // Set the Light Pattern on the Lighting Controller
-            ledLightPattern = inLightPattern;
-            ledLightController.setPattern(ledLightPattern);
+            // Check to verify the pattern is valid
+            if (checkValidLightPattern(inLightPattern)) {
+
+                // Set the Light Pattern on the Lighting Controller
+                ledLightPattern = inLightPattern;
+                ledLightController.setPattern(ledLightPattern);
+            }
         }
-
     }
 
 }
