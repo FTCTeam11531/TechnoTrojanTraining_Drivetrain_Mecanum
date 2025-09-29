@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.utility;
 
+import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
+
 public class RobotConstants {
 
     public static final class About {
@@ -137,6 +139,12 @@ public class RobotConstants {
         public static final String kLabelDrivetrainIMUDeviceMain = "imu_pinpoint";
         public static final String kLabelDrivetrainIMUDeviceAlt = "imu_ch";
 
+        // Drivetrain - imu - onboard Controlhub
+        // TODO: Define the proper orientation of the Rev Control Hub on the Robot
+        // Reference: https://ftc-docs.firstinspires.org/en/latest/programming_resources/imu/imu.html
+        public static final RevHubOrientationOnRobot.LogoFacingDirection kControlHubLogoDirection = RevHubOrientationOnRobot.LogoFacingDirection.DOWN;
+        public static final RevHubOrientationOnRobot.UsbFacingDirection kControlHubUsbDirection = RevHubOrientationOnRobot.UsbFacingDirection.RIGHT;
+
     }
 
     public static final class CommonSettings {
@@ -166,7 +174,7 @@ public class RobotConstants {
             public static final double kMotorOutputPowerHigh = 1.0;
             public static final double kMotorOutputPowerMedium = .80;
             public static final double kMotorOutputPowerLow = .50;
-            public static final double kMotorOutputPowerSnail = .20;
+            public static final double kMotorOutputPowerSnail = .35;
         }
 
         public static final class Odometry {
@@ -190,6 +198,19 @@ public class RobotConstants {
             public static final double kAxialVelGain = 0.0;
             public static final double kLateralVelGain = 0.0;
             public static final double kHeadingVelGain = 0.0;
+
+            public static final class Transition {
+                public static double imuTransitionAdjustment = 0;
+
+                public static double getImuTransitionAdjustment() {
+                    return imuTransitionAdjustment;
+                }
+
+                public static void setImuTransitionAdjustment(double heading) {
+                    imuTransitionAdjustment = heading;
+                }
+            }
+
 
         }
 

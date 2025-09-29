@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.opmode.teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.system.DrivetrainMecanum;
@@ -9,25 +10,34 @@ import org.firstinspires.ftc.teamcode.utility.RobotConstants;
 
 import java.util.Locale;
 
-@TeleOp(name="Teleop Main", group="_main")
-public class opModeTeleopMain extends LinearOpMode {
+@TeleOp(name="Driver Control", group="_main")
+public class DriverControl extends LinearOpMode {
+
+    // -------------------------------------------------
+    // Misc - OpMode Variables
+    // -------------------------------------------------
+    ElapsedTime opModeRunTime = new ElapsedTime();
+
+    // Drivetrain
+    DrivetrainMecanum drivetrainMecanum = new DrivetrainMecanum(this);
 
     @Override
     public void runOpMode() throws InterruptedException {
 
-        // -------------------------------------------------
-        // Misc - OpMode Variables
-        // -------------------------------------------------
-        ElapsedTime opModeRunTime = new ElapsedTime();
+        // ------------------------------
+        // Initialize System(s)
+        // ------------------------------
 
-        // Drivetrain
-        DrivetrainMecanum sysDrivetrain = new DrivetrainMecanum(hardwareMap);
+        // Drivetraim
+        drivetrainMecanum.init();
+
+        // Teleop Drive Mode
+        drivetrainMecanum.setDriveMotorRunMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // ------------------------------------------------------------
         // Variables for OpMode
         // ------------------------------------------------------------
         double inputAxial, inputLateral, inputYaw, restrictionExtensionMax;
-
 
         // Clear all telemetry
         telemetry.clearAll();
@@ -43,7 +53,7 @@ public class opModeTeleopMain extends LinearOpMode {
             telemetry.addData("-","--------------------------------------");
             telemetry.addData("run time", "%.1f seconds", opModeRunTime.seconds());
             telemetry.addData("-","--------------------------------------");
-//            telemetry.addData("drivetrain", String.format(Locale.US,"{mode: %s, speed: %s}", sysDrivetrain.getDrivetrainMode().getLabel(), sysDrivetrain.getDrivetrainOutputPower().getLabel()));
+            telemetry.addData("drivetrain", String.format(Locale.US,"{mode: %s, speed: %s}", drivetrainMecanum.getDrivetrainMode().getLabel(), drivetrainMecanum.getDrivetrainSpeed().getLabel()));
             telemetry.addData("-","--------------------------------------");
 
             // Show joystick information
@@ -58,7 +68,7 @@ public class opModeTeleopMain extends LinearOpMode {
             telemetry.addData("-","--------------------------------------");
             telemetry.addData("-","-- Inertia Measurement Unit");
             telemetry.addData("-","--------------------------------------");
-//            telemetry.addData("imu", sysDrivetrain.getImuStatus());
+            telemetry.addData("imu", drivetrainMecanum.getImuStatus());
 //            telemetry.addData("heading", String.format(Locale.US,"{raw: %.3f, adj: %.3f}", sysDrivetrain.getRobotHeadingRaw(), sysDrivetrain.getRobotHeadingAdj()));
 //            telemetry.addData("position", sysDrivetrain.getImuPositionDetail());
 //            telemetry.addData("velocity", sysDrivetrain.getImuVelocityDetail());
@@ -131,7 +141,7 @@ public class opModeTeleopMain extends LinearOpMode {
 //            else {
 
             // Set Field Centric Drivetrain
-            sysDrivetrain.driveFieldCentric(inputAxial, inputLateral, inputYaw, RobotConstants.Drivetrain.Configuration.kMotorOutputPowerMedium);
+            drivetrainMecanum.driveFieldCentric(inputAxial, inputLateral, inputYaw, RobotConstants.Drivetrain.Configuration.kMotorOutputPowerMedium);
 //            }
 
             // ------------------------------------
@@ -179,7 +189,7 @@ public class opModeTeleopMain extends LinearOpMode {
             if(gamepad1.start && gamepad1.y) {
 
                 // Reset the Robot Heading (normally done on init of Drivetrain system)
-                sysDrivetrain.resetZeroRobotHeading();
+                drivetrainMecanum.resetZeroRobotHeading();
             }
 
             // ------------------------------------
@@ -208,7 +218,7 @@ public class opModeTeleopMain extends LinearOpMode {
             telemetry.addData("-","-- Inertia Measurement Unit");
             telemetry.addData("-","--------------------------------------");
 //            telemetry.addData("imu", sysDrivetrain.getImuStatus());
-            telemetry.addData("heading", String.format(Locale.US,"{raw: %.3f, adj: %.3f}", sysDrivetrain.getRobotHeadingRaw(), sysDrivetrain.getRobotHeadingAdj()));
+            telemetry.addData("heading", String.format(Locale.US,"{raw: %.3f, adj: %.3f}", drivetrainMecanum.getRobotHeadingRaw(), drivetrainMecanum.getRobotHeadingAdj()));
 //            telemetry.addData("position", sysDrivetrain.getImuPositionDetail());
 //            telemetry.addData("velocity", sysDrivetrain.getImuVelocityDetail());
 
